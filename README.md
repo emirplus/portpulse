@@ -36,8 +36,8 @@ python -m portpulse
 
 controls:
 - `↑ / ↓` or `j / k`: navigate
-- `k`: kill selected process
-- `K`: force kill process tree (children included)
+- `x`: kill selected process
+- `X`: force kill process tree (children included)
 - `/`: search / filter by port number or process name
 - `r`: refresh list
 - `q` / `esc`: quit

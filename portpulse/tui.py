@@ -128,9 +128,9 @@ def run_tui():
             status_line.append(" (press ENTER to apply, ESC to clear)")
         else:
             status_line.append("KEYS: ", style="bold")
-            status_line.append("[↑/↓] Navigate  ", style="cyan")
-            status_line.append("[k] Kill  ", style="red")
-            status_line.append("[K] Kill Tree  ", style="bold red")
+            status_line.append("[↑/↓ or j/k] Navigate  ", style="cyan")
+            status_line.append("[x] Kill  ", style="red")
+            status_line.append("[X] Kill Tree  ", style="bold red")
             status_line.append("[/] Filter  ", style="green")
             status_line.append("[r] Refresh  ", style="yellow")
             status_line.append("[q] Quit", style="white")
@@ -158,20 +158,20 @@ def run_tui():
 
         if key in ("q", "Q", "ESC"):
             break
-        elif key == "UP":
+        elif key in ("UP", "k"):
             if selected_idx > 0:
                 selected_idx -= 1
-        elif key == "DOWN":
+        elif key in ("DOWN", "j"):
             if selected_idx < len(entries) - 1:
                 selected_idx += 1
         elif key == "/":
             in_search = True
         elif key in ("r", "R"):
             message = "Refreshed."
-        elif key in ("k", "K"):
+        elif key in ("x", "X"):
             if entries and entries[selected_idx].pid:
                 target = entries[selected_idx]
-                force_tree = key == "K"
+                force_tree = key == "X"
                 success, msg = kill_process(target.pid, force=force_tree, tree=force_tree)
                 message = msg
             else:
