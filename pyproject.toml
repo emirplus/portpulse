@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "portpulse"
+version = "0.1.0"
+description = "interactive terminal port & process killer for when port 3000 refuses to die"
+readme = "README.md"
+authors = [{ name = "emirplus" }]
+license = { text = "MIT" }
+requires-python = ">=3.9"
+dependencies = [
+    "psutil>=5.9.0",
+    "rich>=13.0.0",
+    "click>=8.0.0",
+]
+
+[project.scripts]
+portpulse = "portpulse.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/emirplus/portpulse"
+Repository = "https://github.com/emirplus/portpulse"
+Issues = "https://github.com/emirplus/portpulse/issues"
