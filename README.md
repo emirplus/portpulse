@@ -29,6 +29,10 @@ just run:
 ```bash
 portpulse
 ```
+or if your python scripts folder isn't in PATH:
+```bash
+python -m portpulse
+```
 
 controls:
 - `↑ / ↓` or `j / k`: navigate
