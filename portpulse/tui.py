@@ -129,8 +129,8 @@ def run_tui():
         else:
             status_line.append("KEYS: ", style="bold")
             status_line.append("[↑/↓ or j/k] Navigate  ", style="cyan")
-            status_line.append("[x] Kill  ", style="red")
-            status_line.append("[X] Kill Tree  ", style="bold red")
+            status_line.append("[Enter/d] Kill  ", style="red")
+            status_line.append("[t] Kill Tree  ", style="bold red")
             status_line.append("[/] Filter  ", style="green")
             status_line.append("[r] Refresh  ", style="yellow")
             status_line.append("[q] Quit", style="white")
@@ -168,11 +168,17 @@ def run_tui():
             in_search = True
         elif key in ("r", "R"):
             message = "Refreshed."
-        elif key in ("x", "X"):
+        elif key in ("ENTER", "d", "D"):
             if entries and entries[selected_idx].pid:
                 target = entries[selected_idx]
-                force_tree = key == "X"
-                success, msg = kill_process(target.pid, force=force_tree, tree=force_tree)
+                success, msg = kill_process(target.pid, force=False, tree=False)
+                message = msg
+            else:
+                message = "Cannot kill process (missing PID)"
+        elif key in ("t", "T"):
+            if entries and entries[selected_idx].pid:
+                target = entries[selected_idx]
+                success, msg = kill_process(target.pid, force=True, tree=True)
                 message = msg
             else:
                 message = "Cannot kill process (missing PID)"
